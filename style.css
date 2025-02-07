@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 250vh;
     margin: 0;
     background-color: #222;
     color: white;
@@ -11,12 +11,12 @@ body {
 
 #login-container, #main-container {
     background-color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 90%; /* Responsive width */
-    max-width: 300px; /* Limit width for larger screens */
+    max-width: 600px; /* Limit width for larger screens */
 
     /* Centering */
     position: absolute;
@@ -27,14 +27,14 @@ body {
 
 .error {
     color: red;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 button {
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 20px 40px;
+    margin: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #ff5722;
     color: white;
     cursor: pointer;
@@ -47,12 +47,12 @@ button:hover {
 }
 
 #question-papers {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 #question-papers a {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: #4caf50;
     text-decoration: none;
     font-weight: bold;
