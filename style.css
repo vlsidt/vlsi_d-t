@@ -5,7 +5,7 @@ body {
     align-items: center;
     min-height: 100vh; /* Changed from 300vh to 100vh */
     margin: 0;
-    background: url('https://github.com/vlsidt/vlsi_d-t/blob/main/WhatsApp%20Image%202025-02-07%20at%2023.05.10_0c1e63fa.jpg?raw=true') no-repeat center center fixed; 
+    background: url('https://raw.githubusercontent.com/vlsidt/vlsi_d-t/645e952db20a95b604184af467814aee98d3c7ac/WhatsApp%20Image%202025-02-07%20at%2023.20.31_a8d4ddbf.jpg') no-repeat center center fixed; 
     background-size: cover;
     color: white;
 }
