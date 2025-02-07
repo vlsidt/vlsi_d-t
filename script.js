@@ -16,7 +16,7 @@ const questionPapers =
         "midsem": ["UPCOMING"],
         "endsem": ["UPCOMING"],
         "obt": ["UPCOMING"],
-        "Notes":["NTSS=","https://drive.google.com/file/d/1_Zm0RCUXfCpah4_cjb8CIV-OEyuEHxns/view?usp=drivesdk","https://drive.google.com/file/d/1_uZn2AVMSDejWXm_XuCX079Ho3vDznyy/view?usp=drivesdk","https://drive.google.com/file/d/1_uSbi3-8cTlCn3YIv2LhwfKiZiDC7AeJ/view?usp=drivesdk","https://drive.google.com/file/d/1_tlXG95d2tE9yeOMWLa9GDoGOVMEEVMo/view?usp=drivesdk","https://drive.google.com/file/d/1_mvQABEdTSbDqBmI3KOhsgqG5Bre8IFs/view?usp=drivesdk"]
+        "Notes":["NTSS=","https://drive.google.com/file/d/1_uZn2AVMSDejWXm_XuCX079Ho3vDznyy/view?usp=drivesdk","https://drive.google.com/file/d/1_uSbi3-8cTlCn3YIv2LhwfKiZiDC7AeJ/view?usp=drivesdk","https://drive.google.com/file/d/1_tlXG95d2tE9yeOMWLa9GDoGOVMEEVMo/view?usp=drivesdk","https://drive.google.com/file/d/1_mvQABEdTSbDqBmI3KOhsgqG5Bre8IFs/view?usp=drivesdk"]
     },
     "3rd Year": 
     {
