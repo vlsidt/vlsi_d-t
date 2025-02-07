@@ -7,7 +7,7 @@ const questionPapers =
         "midsem": ["/files/Midsem_Paper.pdf"],
         "endsem": ["/files/Endsem_Paper.pdf"],
         "obt": ["/files/OBT_Paper.pdf"],
-        "Notes":["(Notes=)https://drive.google.com/file/d/1_Zm0RCUXfCpah4_cjb8CIV-OEyuEHxns/view?usp=drivesdk"]
+        "Notes":["https://drive.google.com/file/d/1_Zm0RCUXfCpah4_cjb8CIV-OEyuEHxns/view?usp=drivesdk"]
     },
     "2nd Year": 
     {
