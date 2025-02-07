@@ -3,11 +3,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 300vh;
+    min-height: 100vh; /* Changed from 300vh to 100vh */
     margin: 0;
-    background-color: #222;
+    background: url('https://github.com/vlsidt/vlsi_d-t/blob/main/WhatsApp%20Image%202025-02-07%20at%2023.05.10_0c1e63fa.jpg?raw=true') no-repeat center center fixed; 
+    background-size: cover;
     color: white;
 }
+
 
 #login-container, #main-container {
     background-color: #333;
