@@ -2,21 +2,40 @@ const questionPapers =
  {
     "1st Year":
      {
-        "ct1": ["https://drive.google.com/file/d/1_Zm0RCUXfCpah4_cjb8CIV-OEyuEHxns/view?usp=drivesdk"],
-        "ct2": ["/files/Regular_Hall_Ticket.pdf"],
-        "midsem": ["/files/Midsem_Paper.pdf"],
-        "endsem": ["/files/Endsem_Paper.pdf"],
-        "obt": ["/files/OBT_Paper.pdf"],
-        "Notes":["https://drive.google.com/file/d/1_Zm0RCUXfCpah4_cjb8CIV-OEyuEHxns/view?usp=drivesdk"]
+        "ct1": ["UPCOMING"],
+        "ct2": ["UPCOMING"],
+        "midsem": ["UPCOMING"],
+        "endsem": ["UPCOMING"],
+        "obt": ["UPCOMING"],
+        "Notes":["UPCOMING"]
     },
     "2nd Year": 
     {
-        "ct1": ["/files/2ndYear_CT1_Maths.pdf"],
+        "ct1": ["UPCOMING"],
+        "ct2": ["UPCOMING"],
+        "midsem": ["UPCOMING"],
+        "endsem": ["UPCOMING"],
+        "obt": ["UPCOMING"],
+        "Notes":["https://drive.google.com/file/d/1_Zm0RCUXfCpah4_cjb8CIV-OEyuEHxns/view?usp=drivesdk"]
     },
     "3rd Year": 
-    {},
+    {
+        "ct1": ["UPCOMING"],
+        "ct2": ["UPCOMING"],
+        "midsem": ["UPCOMING"],
+        "endsem": ["UPCOMING"],
+        "obt": ["UPCOMING"],
+        "Notes":["UPCOMING"],
+    },
     "Final Year":
-    {},
+    {
+        "ct1": ["UPCOMING"],
+        "ct2": ["UPCOMING"],
+        "midsem": ["UPCOMING"],
+        "endsem": ["UPCOMING"],
+        "obt": ["UPCOMING"],
+        "Notes":["UPCOMING"],
+    },
 };
 
 let isLoggedIn = false;
