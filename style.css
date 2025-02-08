@@ -65,8 +65,15 @@ button:hover {
 }
 #disclaimer-msg {
     font-size: 12px; /* Make it smaller */
-    color: #ccc; /* Light grey color */
+    color: #ff0202; /* Light grey color */
     text-align: center;
     margin-top: 10px;
     font-style: italic; /* Optional: Makes it slightly different */
+}
+#updated-msg{
+    font-size: 12px;
+    color: #ffee00;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
 }
