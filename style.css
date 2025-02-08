@@ -10,17 +10,14 @@ body {
     color: white;
 }
 
-
 #login-container, #main-container {
     background-color: #333;
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 90%; /* Responsive width */
-    max-width: 500px; /* Limit width for larger screens */
-
-    /* Centering */
+    width: 90%;
+    max-width: 500px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -32,15 +29,17 @@ body {
     margin-top: 20px;
 }
 
+/* General Button Styling */
 button {
-    padding: 20px 30px;
-    margin: 20px;
+    padding: 15px 25px; /* Slightly reduced padding for better mobile fit */
+    margin: 10px;
     border: none;
     border-radius: 10px;
     background-color: #ff5722;
     color: white;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 16px; /* Uniform button text size */
 }
 
 button:hover {
@@ -48,6 +47,36 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* Styling for Subjects Container */
+#subjects-container {
+    display: none;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Styling for Exams Container */
+#exams-container {
+    display: none;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Buttons inside Subjects and Exams */
+#subjects button, #exams-container button {
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Question Papers Section */
 #question-papers {
     margin-top: 40px;
 }
@@ -63,14 +92,18 @@ button:hover {
 #question-papers a:hover {
     text-decoration: underline;
 }
+
+/* Disclaimer Message */
 #disclaimer-msg {
-    font-size: 12px; /* Make it smaller */
-    color: #ff0202; /* Light grey color */
+    font-size: 12px;
+    color: #ff0202;
     text-align: center;
     margin-top: 10px;
-    font-style: italic; /* Optional: Makes it slightly different */
+    font-style: italic;
 }
-#updated-msg{
+
+/* Last Updated Message */
+#updated-msg {
     font-size: 12px;
     color: #ffee00;
     text-align: center;
