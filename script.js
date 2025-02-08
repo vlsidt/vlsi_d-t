@@ -16,7 +16,9 @@ const questionPapers =
         "midsem": ["UPCOMING"],
         "endsem": ["UPCOMING"],
         "obt": ["UPCOMING"],
+        "pyq":["DEMP=","https://drive.google.com/file/d/1dAlQPawTiqp48LVhzswcxlS3jgFnziSd/view?usp=drivesdk","https://drive.google.com/drive/folders/13cuBkN9o70OpLj8eLio7MWM33dXyJ-K6"],
         "Notes":["NTSS=","https://drive.google.com/file/d/1_uZn2AVMSDejWXm_XuCX079Ho3vDznyy/view?usp=drivesdk","https://drive.google.com/file/d/1_uSbi3-8cTlCn3YIv2LhwfKiZiDC7AeJ/view?usp=drivesdk","https://drive.google.com/file/d/1_tlXG95d2tE9yeOMWLa9GDoGOVMEEVMo/view?usp=drivesdk","https://drive.google.com/file/d/1_mvQABEdTSbDqBmI3KOhsgqG5Bre8IFs/view?usp=drivesdk"]
+
     },
     "3rd Year": 
     {
