@@ -1,20 +1,22 @@
+/* ✅ General Styling */
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Changed from 300vh to 100vh */
+    min-height: 100vh;
     margin: 0;
-    background: url('https://raw.githubusercontent.com/vlsidt/vlsi_d-t/645e952db20a95b604184af467814aee98d3c7ac/WhatsApp%20Image%202025-02-07%20at%2023.20.31_a8d4ddbf.jpg') no-repeat center center fixed; 
+    background: url('https://raw.githubusercontent.com/vlsidt/vlsi_d-t/645e952db20a95b604184af467814aee98d3c7ac/WhatsApp%20Image%202025-02-07%20at%2023.20.31_a8d4ddbf.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
 
+/* ✅ Centered Container Styling */
 #login-container, #main-container {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.9);
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
     width: 90%;
     max-width: 500px;
@@ -22,61 +24,95 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-} 
-
-.error {
-    color: red;
-    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* General Button Styling */
+/* ✅ Smooth Fade-In Effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ✅ Option Button Styling */
 button {
-    padding: 15px 25px; /* Slightly reduced padding for better mobile fit */
+    padding: 12px 20px;
     margin: 10px;
     border: none;
     border-radius: 10px;
     background-color: #ff5722;
     color: white;
     cursor: pointer;
-    transition: 0.3s;
-    font-size: 16px; /* Uniform button text size */
-}
-
-button:hover {
-    background-color: #e64a19;
-    transform: scale(1.05);
-}
-
-/* Styling for Subjects Container */
-#subjects-container {
-    display: none;
-    background-color: #444;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Styling for Exams Container */
-#exams-container {
-    display: none;
-    background-color: #444;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Buttons inside Subjects and Exams */
-#subjects button, #exams-container button {
-    width: 90%;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
     max-width: 400px;
     text-align: center;
-    display: block;
-    margin: 10px auto;
+    animation: bounceIn 0.8s ease-in-out;
 }
 
-/* Question Papers Section */
+/* ✅ Bounce-In Effect for Options */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ✅ Hover Animation: Scale + Glow */
+button:hover {
+    background-color: #e64a19;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.6);
+}
+
+/* ✅ Subjects & Exams Containers */
+#subjects-container, #exams-container {
+    display: none;
+    background-color: rgba(68, 68, 68, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.8s ease-in-out;
+}
+
+/* ✅ Slide-In Animation */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ✅ Buttons inside Subjects & Exams */
+#subjects button, #exams-container button {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 10px auto;
+    animation: bounceIn 0.8s ease-in-out;
+}
+
+/* ✅ Question Papers Section */
 #question-papers {
     margin-top: 40px;
 }
@@ -87,26 +123,26 @@ button:hover {
     color: #4caf50;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
 #question-papers a:hover {
     text-decoration: underline;
+    color: #3c8c40;
 }
 
-/* Disclaimer Message */
+/* ✅ Disclaimer & Last Updated Messages */
+#disclaimer-msg, #updated-msg {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
 #disclaimer-msg {
-    font-size: 12px;
     color: #ff0202;
-    text-align: center;
-    margin-top: 10px;
-    font-style: italic;
 }
 
-/* Last Updated Message */
 #updated-msg {
-    font-size: 12px;
     color: #ffee00;
-    text-align: center;
-    margin-top: 10px;
-    font-style: italic;
 }
