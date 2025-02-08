@@ -1,53 +1,12 @@
-const questionPapers =
- {
-    "1st Year":
-     {
-        "ct1": ["UPCOMING"],
-        "ct2": ["UPCOMING"],
-        "midsem": ["UPCOMING"],
-        "endsem": ["UPCOMING"],
-        "obt": ["UPCOMING"],
-        "Notes":["UPCOMING"]
-    },
-    "2nd Year": 
-    {
-        "ct1": ["UPCOMING"],
-        "ct2": ["UPCOMING"],
-        "midsem": ["UPCOMING"],
-        "endsem": ["UPCOMING"],
-        "obt": ["UPCOMING"],
-        "pyq":["DEMP=","https://drive.google.com/file/d/1dAlQPawTiqp48LVhzswcxlS3jgFnziSd/view?usp=drivesdk","https://drive.google.com/drive/folders/13cuBkN9o70OpLj8eLio7MWM33dXyJ-K6"],
-        "Notes":["NTSS=","https://drive.google.com/file/d/1_uZn2AVMSDejWXm_XuCX079Ho3vDznyy/view?usp=drivesdk","https://drive.google.com/file/d/1_uSbi3-8cTlCn3YIv2LhwfKiZiDC7AeJ/view?usp=drivesdk","https://drive.google.com/file/d/1_tlXG95d2tE9yeOMWLa9GDoGOVMEEVMo/view?usp=drivesdk","https://drive.google.com/file/d/1_mvQABEdTSbDqBmI3KOhsgqG5Bre8IFs/view?usp=drivesdk"]
-
-    },
-    "3rd Year": 
-    {
-        "ct1": ["UPCOMING"],
-        "ct2": ["UPCOMING"],
-        "midsem": ["UPCOMING"],
-        "endsem": ["UPCOMING"],
-        "obt": ["UPCOMING"],
-        "Notes":["UPCOMING"],
-    },
-    "Final Year":
-    {
-        "ct1": ["UPCOMING"],
-        "ct2": ["UPCOMING"],
-        "midsem": ["UPCOMING"],
-        "endsem": ["UPCOMING"],
-        "obt": ["UPCOMING"],
-        "Notes":["UPCOMING"],
-    },
-};
-
 let isLoggedIn = false;
 
+// Login Function
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const errorDiv = document.getElementById('login-error');
 
-    if (username === 'csmss' && password === 'csmss') {
+    if (username === 'csmss' && password === 'vlsi') {
         isLoggedIn = true;
         errorDiv.textContent = "";
         document.getElementById('login-container').style.display = 'none';
@@ -57,46 +16,149 @@ function login() {
     }
 }
 
-function showOptions(year) {
+// Show Subjects Function
+function showSubjects(year) {
     if (!isLoggedIn) return;
 
     document.getElementById('year-title').textContent = year;
-    document.getElementById('options-container').style.display = 'block';
+    document.getElementById('subjects-container').style.display = 'block';
+    document.getElementById('exams-container').style.display = 'none';
     document.getElementById('content-container').style.display = 'none';
 
-    const optionsContainer = document.getElementById('options');
-    optionsContainer.innerHTML = '';
+    const subjectsContainer = document.getElementById('subjects');
+    subjectsContainer.innerHTML = '';
 
     if (questionPapers[year]) {
-        for (const exam in questionPapers[year]) {
+        for (const subject in questionPapers[year]) {
             const button = document.createElement('button');
-            button.textContent = exam.toUpperCase();
-            button.onclick = () => showQuestionPapers(year, exam);
-            optionsContainer.appendChild(button);
+            button.textContent = subject;
+            button.onclick = function() { showExams(year, subject); };
+            subjectsContainer.appendChild(button);
         }
     } else {
-        optionsContainer.innerHTML = "No data available.";
+        subjectsContainer.innerHTML = "<p>No subjects available.</p>";
     }
 }
 
-function showQuestionPapers(year, exam) {
+// Show Exams Function
+function showExams(year, subject) {
     if (!isLoggedIn) return;
 
-    document.getElementById('exam-title').textContent = `${year} - ${exam.toUpperCase()}`;
+    document.getElementById('subject-title').textContent = `${year} - ${subject}`;
+    document.getElementById('exams-container').style.display = 'block';
+    document.getElementById('content-container').style.display = 'none';
+
+    const examsContainer = document.getElementById('exams');
+    examsContainer.innerHTML = '';
+
+    if (questionPapers[year] && questionPapers[year][subject]) {
+        for (const exam in questionPapers[year][subject]) {
+            const button = document.createElement('button');
+            button.textContent = exam.toUpperCase();
+            button.onclick = function() { showQuestionPapers(year, subject, exam); };
+            examsContainer.appendChild(button);
+        }
+    } else {
+        examsContainer.innerHTML = "<p>No exams available.</p>";
+    }
+}
+
+// Show Question Papers Function
+function showQuestionPapers(year, subject, exam) {
+    if (!isLoggedIn) return;
+
+    document.getElementById('exam-title').textContent = `${year} - ${subject} - ${exam.toUpperCase()}`;
     document.getElementById('content-container').style.display = 'block';
 
     const papersContainer = document.getElementById('question-papers');
     papersContainer.innerHTML = '';
 
-    if (questionPapers[year] && questionPapers[year][exam]) {
-        questionPapers[year][exam].forEach(paper => {
+    if (questionPapers[year] && questionPapers[year][subject] && questionPapers[year][subject][exam]) {
+        questionPapers[year][subject][exam].forEach((paper) => {
             const link = document.createElement('a');
-            link.href = paper;
-            link.textContent = paper.split('/').pop();
-            link.target = '_blank';
+
+            if (paper === "UPCOMING") {
+                link.textContent = "UPCOMING";
+                link.style.color = "gray";
+                link.href = "#";
+            } else {
+                link.href = paper;
+                link.textContent = paper.split('/').pop();
+                link.target = '_blank';
+            }
+
             papersContainer.appendChild(link);
         });
     } else {
         papersContainer.textContent = "No question papers available.";
     }
 }
+
+// Define question papers data
+const questionPapers = { 
+    "1st Year": {
+        "Math": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
+        },
+        "Physics": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
+        }
+    },
+    "2nd Year": {
+        "NTSS": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "pyq": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
+        },
+        "DEMP": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "pyq": ["https://drive.google.com/drive/folders/13cuBkN9o70OpLj8eLio7MWM33dXyJ-K6"],
+            "Notes": ["UPCOMING"]
+        },  
+        "Mathematics 3": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "pyq": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
+        },  
+        "EDC": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "pyq": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
+        },  
+        "Python": {
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "pyq": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
+        }
+    }
+};
