@@ -64,6 +64,7 @@ function showExams(year, subject) {
 }
 
 // Show Question Papers Function
+// Show Question Papers Function (Updated)
 function showQuestionPapers(year, subject, exam) {
     if (!isLoggedIn) return;
 
@@ -73,8 +74,16 @@ function showQuestionPapers(year, subject, exam) {
     const papersContainer = document.getElementById('question-papers');
     papersContainer.innerHTML = '';
 
-    if (questionPapers[year] && questionPapers[year][subject] && questionPapers[year][subject][exam]) {
-        questionPapers[year][subject][exam].forEach((paper) => {
+    const examData = questionPapers[year]?.[subject]?.[exam];
+
+    if (!examData) {
+        papersContainer.textContent = "No question papers available.";
+        return;
+    }
+
+    if (Array.isArray(examData)) {
+        // Handling normal links
+        examData.forEach((paper) => {
             const link = document.createElement('a');
 
             if (paper === "UPCOMING") {
@@ -89,10 +98,26 @@ function showQuestionPapers(year, subject, exam) {
 
             papersContainer.appendChild(link);
         });
-    } else {
-        papersContainer.textContent = "No question papers available.";
+    } else if (typeof examData === 'object') {
+        // Handling nested objects like "Youtube links"
+        for (const category in examData) {
+            const categoryTitle = document.createElement('h3');
+            categoryTitle.textContent = category;
+            categoryTitle.style.color = "#ffcc00";
+            papersContainer.appendChild(categoryTitle);
+
+            examData[category].forEach((linkURL) => {
+                const link = document.createElement('a');
+                link.href = linkURL;
+                link.textContent = linkURL;
+                link.target = '_blank';
+                link.style.display = 'block';
+                papersContainer.appendChild(link);
+            });
+        }
     }
 }
+
 
 // Define question papers data
 const questionPapers = { 
@@ -131,7 +156,10 @@ const questionPapers = {
             "endsem": ["UPCOMING"],
             "obt": ["UPCOMING"],
             "pyq": ["https://drive.google.com/drive/folders/13cuBkN9o70OpLj8eLio7MWM33dXyJ-K6"],
-            "Notes": ["UPCOMING"]
+            "Notes": ["UPCOMING"],
+            "Youtube links ":{
+                "Gate Smashers":["https://youtu.be/4cjs2GrOf6Y?si=QXElIprTmXoZplNF","https://youtu.be/36LjWW-BSyU?si=kteNOe3QBVwdQn7V"]
+            }
         },  
         "Mathematics 3": {
             "ct1": ["UPCOMING"],
