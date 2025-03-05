@@ -187,6 +187,15 @@ const questionPapers = {
             "obt": ["UPCOMING"],
             "pyq": ["UPCOMING"],
             "Notes": ["UPCOMING"]
+        },
+        "C++":{
+            "ct1": ["UPCOMING"],
+            "ct2": ["UPCOMING"],
+            "midsem": ["UPCOMING"],
+            "endsem": ["UPCOMING"],
+            "obt": ["UPCOMING"],
+            "pyq": ["UPCOMING"],
+            "Notes": ["UPCOMING"]
         }
     }
 };
