@@ -21,8 +21,15 @@
         <p id="creator-msg">Created by Swapnil Shinde ©2025</p>
 
         <h2>Login to CSMSS VLSI Portal</h2>
+        
         <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
+
+        <!-- ✅ Password Input with Eye Icon -->
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Password">
+            <span id="togglePassword" class="eye-icon">👁️</span>
+        </div>
+
         <button onclick="login()">LOGIN</button>
         <div id="login-error" class="error"></div>
 
