@@ -21,7 +21,12 @@ function login() {
     errorDiv.textContent = "";
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('main-container').style.display = 'block';
+
+    // ✅ Hide Upload Section at Login
+    document.getElementById("upload-container").style.display = "none"; 
 }
+
+// ✅ Toggle Password Visibility
 document.getElementById("togglePassword").addEventListener("click", function () {
     let passwordInput = document.getElementById("password");
     if (passwordInput.type === "password") {
@@ -33,8 +38,6 @@ document.getElementById("togglePassword").addEventListener("click", function () 
     }
 });
 
-
-
 // ✅ Show Subjects Function
 function showSubjects(year) {
     if (!isLoggedIn) return;
@@ -43,6 +46,9 @@ function showSubjects(year) {
     document.getElementById('subjects-container').style.display = 'block';
     document.getElementById('exams-container').style.display = 'none';
     document.getElementById('content-container').style.display = 'none';
+    
+    // ✅ Hide Upload Section (Until Exam is Selected)
+    document.getElementById("upload-container").style.display = "none"; 
 
     const subjectsContainer = document.getElementById('subjects');
     subjectsContainer.innerHTML = '';
@@ -66,6 +72,9 @@ function showExams(year, subject) {
     document.getElementById('subject-title').textContent = `${year} - ${subject}`;
     document.getElementById('exams-container').style.display = 'block';
     document.getElementById('content-container').style.display = 'none';
+    
+    // ✅ Hide Upload Section (Until Exam is Selected)
+    document.getElementById("upload-container").style.display = "none"; 
 
     const examsContainer = document.getElementById('exams');
     examsContainer.innerHTML = '';
@@ -82,7 +91,7 @@ function showExams(year, subject) {
     }
 }
 
-// ✅ Show Question Papers (Now With Google Drive Upload for Admins)
+// ✅ Show Question Papers (Fixing Upload Display)
 function showQuestionPapers(year, subject, exam) {
     if (!isLoggedIn) return;
 
@@ -95,36 +104,40 @@ function showQuestionPapers(year, subject, exam) {
     // ✅ Load stored files from localStorage
     let storedFiles = JSON.parse(localStorage.getItem(`${year}-${subject}-${exam}`)) || [];
 
-    storedFiles.forEach((fileURL) => {
+    storedFiles.forEach((file) => {
         const link = document.createElement('a');
-        link.href = fileURL;
-        link.textContent = fileURL;
+        link.href = file.link;
+        link.textContent = file.name;
         link.target = '_blank';
         link.style.display = 'block';
         papersContainer.appendChild(link);
     });
 
-    // ✅ If admin → Show Google Drive link upload option
+    // ✅ Show Upload Section ONLY if Admin and an Exam is Selected
+    const uploadContainer = document.getElementById('upload-container');
     if (isAdmin) {
-        const uploadInput = document.createElement('input');
-        uploadInput.type = 'text';
-        uploadInput.placeholder = 'Paste Google Drive link';
-        papersContainer.appendChild(uploadInput);
-
-        const uploadButton = document.createElement('button');
-        uploadButton.textContent = 'Upload';
-        uploadButton.onclick = function () { uploadFile(year, subject, exam, uploadInput.value); };
-        papersContainer.appendChild(uploadButton);
+        uploadContainer.style.display = 'block';
+    } else {
+        uploadContainer.style.display = 'none';
     }
 }
 
 // ✅ Upload File Function (For Admin)
-function uploadFile(year, subject, exam, fileURL) {
-    if (!fileURL) return alert("Please enter a valid Google Drive link.");
+function uploadFile() {
+    if (!isAdmin) return alert("You don't have permission to upload files!");
+
+    const year = document.getElementById('year-title').textContent;
+    const subject = document.getElementById('subject-title').textContent.split(" - ")[1];
+    const exam = document.getElementById('exam-title').textContent.split(" - ")[2].toLowerCase();
+    
+    const fileName = document.getElementById('file-name').value;
+    const fileLink = document.getElementById('file-link').value;
+
+    if (!fileName || !fileLink) return alert("Please enter both file name and Google Drive link.");
 
     // ✅ Save in localStorage
     let storedFiles = JSON.parse(localStorage.getItem(`${year}-${subject}-${exam}`)) || [];
-    storedFiles.push(fileURL);
+    storedFiles.push({ name: fileName, link: fileLink });
     localStorage.setItem(`${year}-${subject}-${exam}`, JSON.stringify(storedFiles));
 
     alert("File uploaded successfully!");
