@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VLSI Study Portal by Students</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,23 +19,26 @@
 <body>
     <!-- ✅ LOGIN SECTION -->
     <div id="login-container">
-        <p id="disclaimer-msg">Disclaimer: This website is an independent student initiative and is not officially affiliated with CSMSS College</p>
+        <p id="disclaimer-msg">Disclaimer: This website is an independent student initiative and is not officially affiliated with CSMSS College.</p>
         <p id="creator-msg">Created by Swapnil Shinde ©2025</p>
 
         <h2>Login to CSMSS VLSI Portal</h2>
         
-        <input type="text" id="username" placeholder="Username">
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username">
 
-        <!-- ✅ Password Input with Eye Icon -->
-        <div class="password-container">
-            <input type="password" id="password" placeholder="Password">
-            <span id="togglePassword" class="eye-icon">👁️</span>
+            <!-- ✅ Password Input with Eye Icon -->
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password">
+                <span id="togglePassword" class="eye-icon">👁️</span>
+            </div>
+
+            <button onclick="login()">LOGIN</button>
         </div>
 
-        <button onclick="login()">LOGIN</button>
         <div id="login-error" class="error"></div>
 
-        <p id="creator-msg">If there is any issue with the website, contact to the admin.</p>
+        <p id="creator-msg">If there is any issue with the website, contact the admin.</p>
         <p id="updated-msg">Latest update on March 6, 2025</p>
     </div>
 
@@ -66,6 +71,23 @@
         <div id="content-container" style="display:none;">
             <h3 id="exam-title"></h3>
             <div id="question-papers"></div>
+        </div>
+
+        <!-- ✅ Admin Upload Section (Only Visible for Admin) -->
+        <div id="upload-container" style="display:none;">
+            <h3>Upload Study Material</h3>
+            
+            <!-- File Name Input -->
+            <input type="text" id="file-name" placeholder="Enter File Name">
+
+            <!-- File Link Input -->
+            <input type="text" id="file-link" placeholder="Enter Google Drive Link">
+
+            <!-- Upload Button -->
+            <button onclick="uploadFile()">Upload</button>
+
+            <!-- Success Message -->
+            <p id="upload-success" style="color: green; display: none;">File Uploaded Successfully!</p>
         </div>
     </div>
 
