@@ -17,7 +17,7 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
     width: 90%;
-    max-width: 400px;  /* ⬅️ Reduced width to keep fields aligned */
+    max-width: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,7 +25,7 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* ✅ Wrap input fields in a flex container */
+/* ✅ Center-align input fields and button */
 .input-group {
     display: flex;
     flex-direction: column;
@@ -54,10 +54,12 @@ input[type="text"]:focus, input[type="password"]:focus {
     box-shadow: 0 0 8px rgba(255, 87, 34, 0.7);
 }
 
-/* ✅ Password container (Keeps Eye Icon Inside) */
+/* ✅ Password container (Eye Icon Inside) */
 .password-container {
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .password-container input {
@@ -65,7 +67,6 @@ input[type="text"]:focus, input[type="password"]:focus {
     padding-right: 40px; /* Space for eye icon */
 }
 
-/* ✅ Eye icon inside password input */
 .eye-icon {
     position: absolute;
     right: 10px;
@@ -76,9 +77,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     user-select: none;
 }
 
+/* ✅ Login Button - Aligned with Inputs */
 button {
+    width: 100%;
     padding: 12px 20px;
-    margin: 10px;
+    margin-top: 10px; /* Ensures proper spacing */
     border: none;
     border-radius: 10px;
     background-color: #ff5722;
@@ -87,8 +90,6 @@ button {
     transition: all 0.3s ease-in-out;
     font-size: 16px;
     font-weight: bold;
-    width: 100%;
-    max-width: 400px;
     text-align: center;
     animation: bounceIn 0.8s ease-in-out;
 }
