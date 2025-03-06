@@ -1,22 +1,29 @@
 let isLoggedIn = false;
+let isAdmin = false;
 
-// Login Function
+// ✅ Login Function
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const errorDiv = document.getElementById('login-error');
 
-    if (username === 'csmss' && password === 'vlsi') {
+    if (username === 'admin' && password === 'teacher') {
         isLoggedIn = true;
-        errorDiv.textContent = "";
-        document.getElementById('login-container').style.display = 'none';
-        document.getElementById('main-container').style.display = 'block';
+        isAdmin = true; // Admin mode
+    } else if (username === 'user' && password === 'student') {
+        isLoggedIn = true;
+        isAdmin = false; // Student mode
     } else {
         errorDiv.textContent = "Invalid username or password.";
+        return;
     }
+
+    errorDiv.textContent = "";
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('main-container').style.display = 'block';
 }
 
-// Show Subjects Function
+// ✅ Show Subjects Function
 function showSubjects(year) {
     if (!isLoggedIn) return;
 
@@ -40,7 +47,7 @@ function showSubjects(year) {
     }
 }
 
-// Show Exams Function
+// ✅ Show Exams Function
 function showExams(year, subject) {
     if (!isLoggedIn) return;
 
@@ -63,8 +70,7 @@ function showExams(year, subject) {
     }
 }
 
-// Show Question Papers Function
-// Show Question Papers Function (Updated)
+// ✅ Show Question Papers (Now With Google Drive Upload for Admins)
 function showQuestionPapers(year, subject, exam) {
     if (!isLoggedIn) return;
 
@@ -74,128 +80,86 @@ function showQuestionPapers(year, subject, exam) {
     const papersContainer = document.getElementById('question-papers');
     papersContainer.innerHTML = '';
 
-    const examData = questionPapers[year]?.[subject]?.[exam];
+    // ✅ Load stored files from localStorage
+    let storedFiles = JSON.parse(localStorage.getItem(`${year}-${subject}-${exam}`)) || [];
 
-    if (!examData) {
-        papersContainer.textContent = "No question papers available.";
-        return;
-    }
+    storedFiles.forEach((fileURL) => {
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.textContent = fileURL;
+        link.target = '_blank';
+        link.style.display = 'block';
+        papersContainer.appendChild(link);
+    });
 
-    if (Array.isArray(examData)) {
-        // Handling normal links
-        examData.forEach((paper) => {
-            const link = document.createElement('a');
+    // ✅ If admin → Show Google Drive link upload option
+    if (isAdmin) {
+        const uploadInput = document.createElement('input');
+        uploadInput.type = 'text';
+        uploadInput.placeholder = 'Paste Google Drive link';
+        papersContainer.appendChild(uploadInput);
 
-            if (paper === "UPCOMING") {
-                link.textContent = "UPCOMING";
-                link.style.color = "gray";
-                link.href = "#";
-            } else {
-                link.href = paper;
-                link.textContent = paper.split('/').pop();
-                link.target = '_blank';
-            }
-
-            papersContainer.appendChild(link);
-        });
-    } else if (typeof examData === 'object') {
-        // Handling nested objects like "Youtube links"
-        for (const category in examData) {
-            const categoryTitle = document.createElement('h3');
-            categoryTitle.textContent = category;
-            categoryTitle.style.color = "#ffcc00";
-            papersContainer.appendChild(categoryTitle);
-
-            examData[category].forEach((linkURL) => {
-                const link = document.createElement('a');
-                link.href = linkURL;
-                link.textContent = linkURL;
-                link.target = '_blank';
-                link.style.display = 'block';
-                papersContainer.appendChild(link);
-            });
-        }
+        const uploadButton = document.createElement('button');
+        uploadButton.textContent = 'Upload';
+        uploadButton.onclick = function () { uploadFile(year, subject, exam, uploadInput.value); };
+        papersContainer.appendChild(uploadButton);
     }
 }
 
+// ✅ Upload File Function (For Admin)
+function uploadFile(year, subject, exam, fileURL) {
+    if (!fileURL) return alert("Please enter a valid Google Drive link.");
 
-// Define question papers data
+    // ✅ Save in localStorage
+    let storedFiles = JSON.parse(localStorage.getItem(`${year}-${subject}-${exam}`)) || [];
+    storedFiles.push(fileURL);
+    localStorage.setItem(`${year}-${subject}-${exam}`, JSON.stringify(storedFiles));
+
+    alert("File uploaded successfully!");
+    showQuestionPapers(year, subject, exam); // Refresh list
+}
+
+// ✅ Define Question Papers Data
 const questionPapers = { 
     "1st Year": {
         "Math": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
+            "ct1": [],
+            "ct2": [],
+            "midsem": [],
+            "endsem": [],
+            "obt": [],
+            "Notes": []
         },
         "Physics": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
+            "ct1": [],
+            "ct2": [],
+            "midsem": [],
+            "endsem": [],
+            "obt": [],
+            "Notes": []
         }
     },
     "2nd Year": {
         "NTSS": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "pyq": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
+            "ct1": [],
+            "ct2": [],
+            "midsem": [],
+            "endsem": [],
+            "obt": [],
+            "pyq": [],
+            "Notes": []
         },
         "DEMP": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "pyq": ["https://drive.google.com/drive/folders/13cuBkN9o70OpLj8eLio7MWM33dXyJ-K6"],
-            "Notes": ["UPCOMING"],
-            "Youtube links ":{
-                "Gate Smashers":["https://youtu.be/4cjs2GrOf6Y?si=QXElIprTmXoZplNF","https://youtu.be/36LjWW-BSyU?si=kteNOe3QBVwdQn7V"]
+            "ct1": [],
+            "ct2": [],
+            "midsem": [],
+            "endsem": [],
+            "obt": [],
+            "pyq": [],
+            "Notes": [],
+            "Youtube links ": {
+                "Gate Smashers": ["https://youtu.be/4cjs2GrOf6Y", "https://youtu.be/36LjWW-BSyU"]
             }
-        },  
-        "Mathematics 3": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "pyq": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
-        },  
-        "EDC": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "pyq": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
-        },  
-        "Python": {
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "pyq": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
-        },
-        "C++":{
-            "ct1": ["UPCOMING"],
-            "ct2": ["UPCOMING"],
-            "midsem": ["UPCOMING"],
-            "endsem": ["UPCOMING"],
-            "obt": ["UPCOMING"],
-            "pyq": ["UPCOMING"],
-            "Notes": ["UPCOMING"]
         }
     }
 };
