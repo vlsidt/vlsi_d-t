@@ -1,96 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edu Portal For Academia</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edu Portal For Academia</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBM0Q4NZKM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
   gtag('config', 'G-VBM0Q4NZKM');
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/megajs@latest/dist/mega.min.js"></script>
+
 <body>
-    <!-- ✅ LOGIN SECTION -->
-    <div id="login-container">
-        <p id="disclaimer-msg">Disclaimer: This website is an independent student initiative and is not officially affiliated with CSMSS College.</p>
-        <p id="creator-msg">Created by Swapnil Shinde ©2025</p>
+  <!-- ✅ LOGIN SECTION -->
+  <div id="login-container">
+    <p id="disclaimer-msg">Disclaimer: This website is an independent student initiative and is not officially affiliated with CSMSS College.</p>
+    <p id="creator-msg">Created by Swapnil Shinde ©2025</p>
 
-        <h2>Login to EDU PORTAL FOR ACADEMIA </h2>
-        
-        <div class="input-group">
-            <input type="text" id="username" placeholder="Username">
-
-            <!-- ✅ Password Input with Eye Icon -->
-            <div class="password-container">
-                <input type="password" id="password" placeholder="Password">
-                <span id="togglePassword" class="eye-icon">👁️</span>
-            </div>
-
-            <button onclick="login()">LOGIN</button>
-        </div>
-
-        <div id="login-error" class="error"></div>
-
-        <p id="creator-msg">If there is any issue with the website, contact the admin.</p>
-        <p id="updated-msg">Latest update on March 28, 2025</p>
+    <h2>Login to EDU PORTAL FOR ACADEMIA</h2>
+    <div class="input-group">
+      <input type="text" id="username" placeholder="Username" />
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Password" />
+        <span id="togglePassword" class="eye-icon">👁️</span>
+      </div>
+      <button onclick="login()">LOGIN</button>
     </div>
 
-    <!-- ✅ MAIN SECTION (After Login) -->
-    <div id="main-container" style="display:none;">
-        <p id="creator-msg">Created by Swapnil Shinde ©2025</p>
-        <h2>Welcome to Edu Portal !</h2>
-        
-        <!-- Year Selection -->
-        <div id="year-selection">
-            <button onclick="showSubjects('1st Year')">1st Year</button>
-            <button onclick="showSubjects('2nd Year')">2nd Year</button>
-            <button onclick="showSubjects('3rd Year')">3rd Year</button>
-            <button onclick="showSubjects('Final Year')">Final Year</button>
-        </div>
+    <div id="login-error" class="error"></div>
 
-        <!-- Subject Selection -->
-        <div id="subjects-container" style="display:none;">
-            <h3 id="year-title"></h3>
-            <div id="subjects"></div>
-        </div>  
+    <p id="creator-msg">If there is any issue with the website, contact the admin.</p>
+    <p id="updated-msg">Latest update on March 28, 2025</p>
+  </div>
 
-        <!-- Exam Selection -->
-        <div id="exams-container" style="display:none;">
-            <h3 id="subject-title"></h3>
-            <div id="exams"></div>
-        </div>
+  <!-- ✅ MAIN SECTION (After Login) -->
+  <div id="main-container" style="display:none;">
+    <p id="creator-msg">Created by Swapnil Shinde ©2025</p>
+    <h2>Welcome to Edu Portal !</h2>
 
-        <!-- ✅ Content Section (View Papers or Upload Files) -->
-        <div id="content-container" style="display:none;">
-            <h3 id="exam-title"></h3>
-            <div id="question-papers"></div>
-        </div>
-
-        <!-- ✅ Admin Upload Section (Only Visible for Admin) -->
-        <div id="upload-container" style="display:none;">
-            <h3>Upload Study Material</h3>
-            
-            <!-- File Name Input -->
-            <input type="text" id="file-name" placeholder="Enter File Name">
-
-            <!-- File Link Input -->
-            <input type="text" id="file-link" placeholder="Enter Google Drive Link">
-
-            <!-- Upload Button -->
-            <button onclick="uploadFile()">Upload</button>
-
-            <!-- Success Message -->
-            <p id="upload-success" style="color: green; display: none;">File Uploaded Successfully!</p>
-        </div>
+    <!-- Year Selection -->
+    <div id="year-selection">
+      <button onclick="showSubjects('1st Year')">1st Year</button>
+      <button onclick="showSubjects('2nd Year')">2nd Year</button>
+      <button onclick="showSubjects('3rd Year')">3rd Year</button>
+      <button onclick="showSubjects('Final Year')">Final Year</button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Subject Selection -->
+    <div id="subjects-container" style="display:none;">
+      <h3 id="year-title"></h3>
+      <div id="subjects"></div>
+    </div>  
+
+    <!-- Exam Selection -->
+    <div id="exams-container" style="display:none;">
+      <h3 id="subject-title"></h3>
+      <div id="exams"></div>
+    </div>
+
+    <!-- ✅ Content Section -->
+    <div id="content-container" style="display:none;">
+      <h3 id="exam-title"></h3>
+      <div id="question-papers"></div>
+    </div>
+
+    <!-- ✅ Admin Upload Section -->
+    <div id="upload-container" style="display:none;">
+      <h3>Upload Study Material</h3>
+
+      <!-- File Name Input -->
+      <input type="text" id="file-name" placeholder="Enter File Name" />
+
+      <!-- Google Drive Link Input -->
+      <input type="text" id="file-link" placeholder="Enter Google Drive Link" />
+
+      <!-- Optional: Upload File to MEGA -->
+      <input type="file" id="mega-file" />
+
+      <!-- Buttons -->
+      <button onclick="uploadFile()">Upload Google Drive Link</button>
+      <button onclick="uploadToMega()">Upload to MEGA</button>
+
+      <!-- Upload Status -->
+      <p id="upload-success" style="color: green; display: none;">File Uploaded Successfully!</p>
+      <p id="mega-upload-link" style="color: blue;"></p>
+    </div>
+  </div>
+
+  <!-- ✅ JavaScript -->
+  <script src="script.js"></script>
+  <script>
+    async function uploadToMega() {
+      const fileInput = document.getElementById('mega-file');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please select a file to upload.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const response = await fetch('http://localhost:3000/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        if (data.link) {
+          document.getElementById('mega-upload-link').innerText = 'MEGA Link: ' + data.link;
+          document.getElementById('upload-success').style.display = 'block';
+        } else {
+          alert('Upload failed: ' + JSON.stringify(data));
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        alert('Upload failed. Check console for more info.');
+      }
+    }
+  </script>
 </body>
 </html>
